@@ -1,10 +1,10 @@
 import express, {json} from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import {postgresConnection} from "./postgresConnect.js"
+//import connection from "./postgresConnect.js"
 
 
-import testRouter from './routers/testRouter.js'
+import getCategoriesRoute from './routers/getCategoriesRoute.js'
 
 dotenv.config();
 const app = express();
@@ -12,15 +12,12 @@ app.use(cors());
 app.use(json());
 
 
-app.use(testRouter)
+app.use(getCategoriesRoute)
 
 
 
 
 
 const PORT = process.env.PORT
-app.listen(PORT, () =>{
-    postgresConnection();
-    console.log("Boardcamp server is Running!")
-})
+app.listen(PORT)
 
