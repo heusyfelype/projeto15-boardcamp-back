@@ -7,7 +7,7 @@ export async function getCategoriesController(req, res){
         
         console.log(categories.rows + "alguma coisa")
 
-        res.send("Tdo certo!")
+        res.send(categories.rows)
 
     }catch(e){
         res.status(500).send(e)

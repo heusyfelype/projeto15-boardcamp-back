@@ -4,6 +4,6 @@ import {getCategoriesController} from '../crontrollers/getCategoriesController.j
 
 const getCategoriesRoute = Router();
 
-getCategoriesRoute.get('/', getCategoriesController);
+getCategoriesRoute.get('/categories', getCategoriesController);
 
 export default getCategoriesRoute;
