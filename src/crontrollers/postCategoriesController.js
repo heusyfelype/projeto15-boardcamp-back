@@ -3,7 +3,7 @@ import connection from "../postgresConnect.js"
 export async function postCategoriesController(req, res) {
 
     const nameToInsert = req.body;
-    //console.log(nameToInsert.name)
+   // console.log(nameToInsert.name)
 
     try {
         const existCategory = await connection.query(`
@@ -11,7 +11,8 @@ export async function postCategoriesController(req, res) {
             FROM categories 
             WHERE name = $1`, [nameToInsert.name]
         );
-        if(existCategory.rows){
+
+        if(existCategory.rows.length > 0){
             return res.sendStatus(409);
         }
 
