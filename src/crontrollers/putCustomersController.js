@@ -4,11 +4,11 @@ export async function putCustomersController(req, res) {
     const id = req.params.id;
     const infos = req.body;
 
-    console.log(id, typeof id, infos)
+    //console.log(id, typeof id, infos)
 
     try{
         if(!id){
-            return res.sendStatus(501);
+            return res.sendStatus(422);
         }
 
         const customer = await connection.query(`
