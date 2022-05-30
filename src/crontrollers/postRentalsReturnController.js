@@ -22,23 +22,25 @@ export async function postRentalsReturnController(req, res) {
         const rental = rentalResponse.rows[0];
         const today = dayjs().format('YYYY-MM-DD')
         const formatedRentDate = dayjs(rental.rentDate).format("YYYY-MM-DD")
-        const diferenceDay = dayjs(today) - dayjs(formatedRentDate)
+        const diferenceDay = (dayjs(today) - dayjs(formatedRentDate))/ (1000 * 3600 * 24)
 
         diferenceDay > rental.daysRented 
             ? 
-            rental.delayFee = (diferenceDay - rental.daysRented) * (rental.originalPrice/rental.daysRented) 
+            rental.delayFee = ((diferenceDay - rental.daysRented) * (rental.originalPrice/rental.daysRented)) 
             : 
             rental.delayFee = 0;
         
+        console.log("Rental: ", rental)
+        console.log("Today: " + today, "FormatedRentDay: " + formatedRentDate, "diferenceDay: " + diferenceDay)
+
         
         const updateRental = await connection.query(
             `
-                UPDATE rentals SET "returnDate"='${today}', "delayFee"=${rental.delayFee} WHERE id = ${id}
+                UPDATE rentals SET "returnDate"=$1, "delayFee"=$2 WHERE id = $3 
 
-            `
+            `, [`${today}`, `${rental.delayFee}`, `${id}`]
         )
         
-        console.log("Today: " + today, "FormatedRentDay: " + formatedRentDate, "diferenceDay: " + diferenceDay)
 
         return res.sendStatus(200)
 
