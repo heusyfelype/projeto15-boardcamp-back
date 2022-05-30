@@ -5,23 +5,9 @@ export async function postRentalsController(req, res) {
     const rental = req.body;
 
     rental.rentDate = dayjs().format('YYYY-MM-DD');
+    //rental.rentDate = dayjs('2020/25/05').format('YYYY-MM-DD')
 
-
-    /*
-    {
-  --------id: 1,
-  --------customerId: 1,
-  -------gameId: 1,
-  rentDate: '2021-06-20',    // data em que o aluguel foi feito
-  ----------daysRented: 3,             // por quantos dias o cliente agendou o aluguel
-  returnDate: null,          // data que o cliente devolveu o jogo (null enquanto não devolvido)
-  originalPrice: 4500,       // preço total do aluguel em centavos (dias alugados vezes o preço por dia do jogo)
-  delayFee: null             // multa total paga por atraso (dias que passaram do prazo vezes o preço por dia do jogo)
-}
-    
-    */
-
-    console.log(rental.gameId)
+    console.log(rental)
 
     try{
 
@@ -42,8 +28,8 @@ export async function postRentalsController(req, res) {
 
          await connection.query(`
              INSERT INTO rentals ("customerId", "gameId", "rentDate", "daysRented", "returnDate", "originalPrice", "delayFee") 
-             VALUES (${rental.customerId}, ${rental.gameId}, '${rental.rentDate}', ${rental.daysRented}, ${null}, ${originalPrice}, ${null});
-         `)
+             VALUES ( $1, $2 , $3, $4, $5, $6, $7);
+         `, [`${rental.customerId}`, `${rental.gameId}`, `${rental.rentDate}`, `${rental.daysRented}`, null, `${originalPrice}`, null])
         
         return res.sendStatus(201);
     }catch(e){
