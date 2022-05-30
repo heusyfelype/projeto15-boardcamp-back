@@ -10,6 +10,8 @@ import getGamesRouter from './routers/getGamesRouter.js';
 import postGamesRouter from './routers/postGamesRouter.js';
 import postCustomersRouter from './routers/postCustomersRouter.js';
 import putCustomersRouter from './routers/putCustomersRouter.js';
+import getCustomersWithIdRouters from './routers/getCustomersWithIdRouters.js';
+import getCustomersRouters from './routers/getCustomersRouter.js'
 
 dotenv.config();
 const app = express();
@@ -23,6 +25,8 @@ app.use(getGamesRouter);
 app.use(postGamesRouter);
 app.use(postCustomersRouter);
 app.use(putCustomersRouter);
+app.use(getCustomersWithIdRouters);
+app.use(getCustomersRouters);
 
 
 
