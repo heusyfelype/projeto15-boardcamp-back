@@ -4,16 +4,6 @@ export async function postGamesController(req, res) {
     const gameToInsert = req.body;
     console.log(gameToInsert);
 
-    /*
-        {
-            name: 'Banco Imobiliário',
-            image: 'http://',
-            stockTotal: 3,
-            categoryId: 1,
-            pricePerDay: 1500,
-        }
-    */
-
     try {
         
         const existGame = await connection.query(`

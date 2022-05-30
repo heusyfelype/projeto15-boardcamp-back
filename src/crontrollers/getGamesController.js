@@ -24,6 +24,6 @@ export async function getGamesController(req, res){
         return res.send(games.rows)
 
     }catch(e){
-        return res.status(500).send(e)
+        return res.status(500).send(e);
     }
 }

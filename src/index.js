@@ -4,10 +4,11 @@ import dotenv from "dotenv";
 //import connection from "./postgresConnect.js"
 
 
-import getCategoriesRoute from './routers/getCategoriesRoute.js'
-import postCategoriesController from './routers/postCategoriesRouter.js'
-import getGamesRouter from './routers/getGamesRouter.js'
-import postGamesRouter from './routers/postGamesRouter.js'
+import getCategoriesRoute from './routers/getCategoriesRoute.js';
+import postCategoriesController from './routers/postCategoriesRouter.js';
+import getGamesRouter from './routers/getGamesRouter.js';
+import postGamesRouter from './routers/postGamesRouter.js';
+import postCustomersRouter from './routers/postCustomersRouter.js';
 
 dotenv.config();
 const app = express();
@@ -19,6 +20,7 @@ app.use(getCategoriesRoute);
 app.use(postCategoriesController);
 app.use(getGamesRouter);
 app.use(postGamesRouter);
+app.use(postCustomersRouter);
 
 
 
