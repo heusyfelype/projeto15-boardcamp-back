@@ -23,6 +23,6 @@ export async function postGamesController(req, res) {
         return res.sendStatus(201);
 
     } catch (e) {
-        res.status(500).send(e);
+        return res.status(500).send(e);
     }
 }

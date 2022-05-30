@@ -7,10 +7,10 @@ export async function getCategoriesController(req, res){
         
         console.log(categories.rows + "alguma coisa")
 
-        res.send(categories.rows)
+        return res.send(categories.rows)
 
     }catch(e){
-        res.status(500).send(e)
+        return res.status(500).send(e)
     }
 
 
