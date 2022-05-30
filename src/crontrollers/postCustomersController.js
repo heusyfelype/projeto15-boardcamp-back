@@ -2,17 +2,6 @@ import connection from "../postgresConnect.js"
 
 export async function postCustomersController(req, res) {
     const customerToInsert = req.body;
-    console.log(customerToInsert);
-
-    /*
-        {
-            name: 'João Alfredo',
-            phone: '21998899222',
-            cpf: '01234567890',
-            birthday: '1992-10-05'
-        }
-    */
-
 
     try {
         
@@ -25,11 +14,10 @@ export async function postCustomersController(req, res) {
             return res.sendStatus(409);
         }
 
-        console.log("Tdo certo até aqui")
         await connection.query(`
             INSERT INTO customers (name, phone, cpf, birthday)
-            VALUES ('${customerToInsert.name}', '${customerToInsert.phone}', '${customerToInsert.cpf}', '${customerToInsert.birthday}')
-        `); // Depois tem que arrumar para evitar o Injection
+            VALUES ($1, $2, $3, $4)
+        `, [`${customerToInsert.name}`, `${customerToInsert.phone}`, `${customerToInsert.cpf}`, `${customerToInsert.birthday}`]); 
 
         return res.sendStatus(201);
 
