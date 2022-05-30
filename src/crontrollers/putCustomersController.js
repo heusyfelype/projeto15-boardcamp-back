@@ -4,16 +4,14 @@ export async function putCustomersController(req, res) {
     const id = req.params.id;
     const infos = req.body;
 
-    //console.log(id, typeof id, infos)
-
     try{
         if(!id){
             return res.sendStatus(422);
         }
 
         const customer = await connection.query(`
-            UPDATE customers SET name='${infos.name}', phone='${infos.phone}', cpf='${infos.cpf}', birthday='${infos.birthday}' WHERE id = ${id}
-        `)
+            UPDATE customers SET name=$1, phone=$2, cpf=$3, birthday=$4 WHERE id = $5
+        `, [`${infos.name}`, `${infos.phone}`, `${infos.cpf}`, `${infos.birthday}`, `${id}`])
 
         if(customer.rowCount === 0){
             return res.sendStatus(404);

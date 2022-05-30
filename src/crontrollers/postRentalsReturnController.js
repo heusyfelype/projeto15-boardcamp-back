@@ -22,7 +22,7 @@ export async function postRentalsReturnController(req, res) {
         const rental = rentalResponse.rows[0];
         const today = dayjs().format('YYYY-MM-DD')
         const formatedRentDate = dayjs(rental.rentDate).format("YYYY-MM-DD")
-        const diferenceDay = (dayjs(today) - dayjs(formatedRentDate))/ (1000 * 3600 * 24)
+        const diferenceDay = parseInt((dayjs(today) - dayjs(formatedRentDate))/ (1000 * 3600 * 24))
 
         diferenceDay > rental.daysRented 
             ? 
