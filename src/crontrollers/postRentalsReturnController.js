@@ -15,6 +15,9 @@ export async function postRentalsReturnController(req, res) {
         if(rentalResponse.rowCount === 0){
             return res.sendStatus(404);
         }
+        if(rentalResponse.rows[0].returnDate){
+            return res.sendStatus(400);
+        }
 
         const rental = rentalResponse.rows[0];
         const today = dayjs().format('YYYY-MM-DD')
