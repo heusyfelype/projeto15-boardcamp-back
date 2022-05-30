@@ -11,17 +11,17 @@ export async function getGamesController(req, res){
         
         if(queryParams){
             const games = await connection.query(`
-            SELECT *, categories.name as "categoryName" FROM games 
+            SELECT games.*, categories.name as "categoryName" FROM games 
             JOIN categories ON games."categoryId" = categories.id
             WHERE games.name ILIKE $1`, [`${queryParams}%`]);
 
-            return res.send(games.rows)
+            return res.send(games.rows);
         }
 
         const games = await connection.query(`
-            SELECT *, categories.name as "categoryName" FROM games 
+            SELECT games.*, categories.name as "categoryName" FROM games 
             JOIN categories ON games."categoryId" = categories.id`);
-        return res.send(games.rows)
+        return res.send(games.rows);
 
     }catch(e){
         return res.status(500).send(e);
