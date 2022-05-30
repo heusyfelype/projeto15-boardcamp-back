@@ -14,6 +14,7 @@ import getCustomersWithIdRouters from './routers/getCustomersWithIdRouters.js';
 import getCustomersRouters from './routers/getCustomersRouter.js';
 import postRentalsRouter from './routers/postRentalsRouter.js';
 import getRentalsRouter from './routers/getRentalsRouter.js';
+import postRentalsReturnRouter from './routers/postRentalsReturnRouter.js';
 
 dotenv.config();
 const app = express();
@@ -31,6 +32,7 @@ app.use(getCustomersWithIdRouters);
 app.use(getCustomersRouters);
 app.use(postRentalsRouter);
 app.use(getRentalsRouter);
+app.use(postRentalsReturnRouter);
 
 
 
