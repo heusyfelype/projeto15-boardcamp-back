@@ -22,8 +22,8 @@ export async function getRentalsController(req, res) {
                 JOIN games ON rentals."gameId" = games.id
                 JOIN categories ON games."categoryId" = categories.id
 
-                WHERE rentals."customerId" = ${customerId} AND rentals."gameId" = ${gameId}
-            `)
+                WHERE rentals."customerId" = $1 AND rentals."gameId" = $2
+            `, [`${customerId}`, `${gameId}`]);
             return res.send(rentals.rows);
 
         }
@@ -41,8 +41,8 @@ export async function getRentalsController(req, res) {
                 JOIN games ON rentals."gameId" = games.id
                 JOIN categories ON games."categoryId" = categories.id
 
-                WHERE rentals."customerId" = ${customerId}
-            `)
+                WHERE rentals."customerId" = $1
+            `,[`${customerId}`]);
             return res.send(rentals.rows);
         }
 
@@ -58,8 +58,8 @@ export async function getRentalsController(req, res) {
                 JOIN customers ON rentals."customerId" = customers.id
                 JOIN categories ON games."categoryId" = categories.id
 
-                WHERE rentals."gameId" = ${gameId}
-            `)
+                WHERE rentals."gameId" = $1
+            `, [`${gameId}`])
             return res.send(rentals.rows);
         }
 
@@ -76,7 +76,7 @@ export async function getRentalsController(req, res) {
                 JOIN customers ON rentals."customerId" = customers.id
                 JOIN categories ON games."categoryId" = categories.id
             `)
-        return res.send(rentals);
+        return res.send(rentals.rows);
     } catch (e) {
         return res.status(500).send(e);
     }
