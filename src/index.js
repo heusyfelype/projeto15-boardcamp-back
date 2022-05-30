@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 
 import getCategoriesRoute from './routers/getCategoriesRoute.js'
 import postCategoriesController from './routers/postCategoriesRouter.js'
+import getGamesRouter from './routers/getGamesRouter.js'
+import postGamesRouter from './routers/postGamesRouter.js'
 
 dotenv.config();
 const app = express();
@@ -15,6 +17,8 @@ app.use(json());
 
 app.use(getCategoriesRoute);
 app.use(postCategoriesController);
+app.use(getGamesRouter);
+app.use(postGamesRouter);
 
 
 

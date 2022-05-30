@@ -17,7 +17,7 @@ export async function postCategoriesController(req, res) {
         }
 
 
-        const categories = await connection.query(`
+        await connection.query(`
             INSERT INTO categories (name)
             VALUES ('${nameToInsert.name}')
         `);
